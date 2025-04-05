@@ -1,0 +1,73 @@
+services:
+    # Serviço PHP + Laravel
+    api:
+        container_name: api
+        build:
+            context: .
+            dockerfile: ./.docker/php/Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - db
+            - redis
+        networks:
+            - huggy-network
+
+    # Serviço NGINX
+    nginx:
+        container_name: nginx
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "8888:80"
+        volumes:
+            - ./:/var/www
+            - ./.docker/nginx/:/etc/nginx/conf.d/
+        depends_on:
+            - api
+        networks:
+            - huggy-network
+
+    # Banco de Dados MySQL
+    db:
+        container_name: db
+        image: mysql:5.7.22
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: huggy
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_PASSWORD: root
+            MYSQL_USER: root
+        volumes:
+            - ./.docker/mysql/dbdata:/var/lib/mysql 
+        ports:
+            - "3306:3306"
+        networks:
+            - huggy-network
+
+    #sqlite3
+    sqlite3:
+        container_name: sqlite3
+        build:
+            context: .
+            dockerfile: ./.docker/sqlite3/Dockerfile
+        restart: unless-stopped
+        ports:
+            - "8191:8191"
+        volumes:
+            - ./.docker/sqlite3:/db
+        command: ["tail", "-f", "/dev/null"]
+
+    # Redis
+    redis:
+        container_name: redis
+        image: redis:latest
+        restart: unless-stopped
+        networks:
+            - huggy-network
+
+networks:
+    huggy-network:
+        driver: bridge
