@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Socialite\Contracts\Factory;
+use App\Socialite\HuggyProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->bootHuggySocialite();
     }
+
+    private function bootHuggySocialite()
+{
+    $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
+    $socialite->extend(
+        'huggy',
+        function ($app) use ($socialite) {
+            $config = $app['config']['services.huggy'];
+            return $socialite->buildProvider(HuggyProvider::class, $config);
+        }
+    );
+}
 }

@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'huggy' => [
+        'client_id' => env('HUGGY_CLIENT_ID'),
+        'client_secret' => env('HUGGY_CLIENT_SECRET'),
+        'base_auth_url' => env('HUGGY_BASE_AUTH_URL'),
+        'redirect' => env('HUGGY_REDIRECT_URL'),
+        'base_api_url' => env('HUGGY_BASE_API_URL'),
+        'api_version' => env('HUGGY_API_VERSION'),
+    ],
+
 ];
