@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ValidateHuggyWebhookRequest;
 use App\Services\HuggyService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class HuggyControlller extends Controller
 {
@@ -23,8 +23,9 @@ class HuggyControlller extends Controller
         return $this->huggyService->callbackProvider();
     }
 
-    public function validateWebHooks(ValidateHuggyWebhookRequest $request): string 
+    public function webhooks(Request $request): string 
     {
-        return $this->huggyService->validateWebHooks(request: $request);
+        return $this->huggyService->webhooks(request: $request);
     }
+
 }

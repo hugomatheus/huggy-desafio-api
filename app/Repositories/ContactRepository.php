@@ -80,4 +80,12 @@ class ContactRepository
         $contact = $this->contact->findOrFail($id);
         return $contact->delete();
     }
+
+    public function upateOrCreate(array $data): Contact 
+    {
+        return $this->contact->updateOrCreate(
+            ['email' => $data['email']],
+            $data
+        );
+    }
 }

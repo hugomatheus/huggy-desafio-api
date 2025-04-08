@@ -2,18 +2,21 @@
 
 namespace App\Services;
 
-use App\Http\Requests\ValidateHuggyWebhookRequest;
+use App\Repositories\ContactRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
 class HuggyService
 {
     private $userRepository;
-    public function __construct(UserRepository $userRepository)
+    private $contactRepository;
+    public function __construct(UserRepository $userRepository, ContactRepository $contactRepository)
     {
         $this->userRepository = $userRepository;
+        $this->contactRepository = $contactRepository;
     }
 
     public function redirectProvider(): RedirectResponse
@@ -37,8 +40,18 @@ class HuggyService
         return redirect(env('APP_FRONTEND') . "/huggy-callback?token=$token");
     }
 
-    public function validateWebHooks(ValidateHuggyWebhookRequest $request): string
+    public function webhooks(Request $request): string
     {
+        $data = $request->all();
+        if (
+            isset($data['messages']) &&
+            isset($data['messages']['createdCustomer']) &&
+            is_array($data['messages']['createdCustomer']) &&
+            count($data['messages']['createdCustomer']) > 0
+        ) {
+            $contact = $data['messages']['createdCustomer'][0];
+            $this->contactRepository->upateOrCreate($contact);
+        }
         return $request->input(key: 'token');
     }
 }
