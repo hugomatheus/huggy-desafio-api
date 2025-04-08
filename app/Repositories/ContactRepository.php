@@ -3,15 +3,21 @@
 namespace App\Repositories;
 
 use App\Models\Contact;
+use App\Models\ViewContactByCity;
+use App\Models\ViewContactByState;
 use Illuminate\Http\Request;
 
 class ContactRepository
 {
     private $contact;
+    private $viewContactByCity;
+    private $viewContactByState;
 
-    public function __construct(Contact $contact)
+    public function __construct(Contact $contact, ViewContactByCity $viewContactByCity, ViewContactByState $viewContactByState)
     {
         $this->contact = $contact;
+        $this->viewContactByCity = $viewContactByCity;
+        $this->viewContactByState = $viewContactByState;
     }
 
     public function findAll(Request $request)
@@ -81,11 +87,21 @@ class ContactRepository
         return $contact->delete();
     }
 
-    public function upateOrCreate(array $data): Contact 
+    public function upateOrCreate(array $data): Contact
     {
         return $this->contact->updateOrCreate(
             ['email' => $data['email']],
             $data
         );
+    }
+
+    public function getByCity()
+    {
+        return $this->viewContactByCity->get();
+    }
+
+    public function getByState()
+    {
+        return $this->viewContactByState->get();
     }
 }

@@ -49,4 +49,11 @@ class ContactService
     {
         return $this->contactRepository->delete($id);
     }
+
+    public function getCharts()
+    {
+        $chartCity = $this->contactRepository->getByCity();
+        $chartState = $this->contactRepository->getByState();
+        return ['chart_city' => $chartCity, 'chart_state' => $chartState];
+    }
 }

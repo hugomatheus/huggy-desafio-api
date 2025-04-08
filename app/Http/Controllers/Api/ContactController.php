@@ -47,4 +47,10 @@ class ContactController extends Controller
         $this->contactService->delete($id);
         return response()->json(['message' => 'Contato removido com sucesso.']);
     }
+
+    public function charts()
+    {
+        $charts = $this->contactService->getCharts();
+        return response()->json($charts);
+    }
 }
