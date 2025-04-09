@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "59c18607-31f3-407e-b08b-0ffd03644cf6",
+		"name": "Huggy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12998972",
+		"_collection_link": "https://solar-comet-471269.postman.co/workspace/Huggy~01a49753-1e3d-42a5-9e78-b903371588fd/collection/12998972-59c18607-31f3-407e-b08b-0ffd03644cf6?action=share&source=collection_link&creator=12998972"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "Criar contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|YlXpI3BIEOTOaj2IrciFn0mmNETqj0CWJRyD3A6sc8823a53",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Contato 17\",\n    \"email\": \"contato17@email.com\",\n    \"address\": {\n        \"street\": \"rua\",\n        \"city\": \"Arapiraca\",\n        \"state\": \"AL\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/api/contacts",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|YlXpI3BIEOTOaj2IrciFn0mmNETqj0CWJRyD3A6sc8823a53",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/api/contacts/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"contacts",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|YlXpI3BIEOTOaj2IrciFn0mmNETqj0CWJRyD3A6sc8823a53",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/api/contacts?direction=desc&page=1&per_page=50&search=",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "direction",
+									"value": "desc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "50"
+								},
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|Bq3sBvWgHm5cyUhDQA1V2jccLhQ26NUOkazMKEKq7f84fa2e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Contato 1\",\n    \"email\": \"contato1edit@email.com\",\n    \"address\": {\n        \"street\": \"rua edit\",\n        \"city\": \"Maceió\",\n        \"state\": \"AL\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/api/contacts/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"contacts",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar contato",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|YlXpI3BIEOTOaj2IrciFn0mmNETqj0CWJRyD3A6sc8823a53",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8888/api/contacts/19",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"contacts",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Informações para gráficos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|YlXpI3BIEOTOaj2IrciFn0mmNETqj0CWJRyD3A6sc8823a53",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/api/contacts/charts",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"contacts",
+								"charts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autorização de acesso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.localhost:8888/auth/huggy/redirect",
+					"protocol": "http",
+					"host": [
+						"www",
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"auth",
+						"huggy",
+						"redirect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validação  webhooks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/huggy/webhooks",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"huggy",
+						"webhooks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
