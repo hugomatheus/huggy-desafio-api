@@ -86,6 +86,8 @@ https://<SEU_NGROK>.ngrok-free.app/huggy/webhooks
 
 ## Configuração do Frontend (vue)
 
+Node v22
+
 ### Clonar o repositório
 ```bash
 git clone https://github.com/hugomatheus/huggy-desafio-frontend.git
